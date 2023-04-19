@@ -13,10 +13,14 @@
         public string Telefone { get; set; }
         public string Email { get; set; }
         public string CodPostal { get; set; }
+        public string Morada { get; set; }
         public DateOnly DataNascimento { get; set; }
 
         //*********************************************
 
+        /// <summary>
+        /// Lista de reservas que o cliente fez
+        /// </summary>
         public ICollection<Reservas> ListaReservas { get; set; }
     }
 }

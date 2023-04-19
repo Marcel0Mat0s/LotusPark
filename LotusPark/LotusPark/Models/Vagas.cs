@@ -9,7 +9,7 @@ namespace LotusPark.Models {
         //*********************************************
 
         /// <summary>
-        /// FK da reserva que reservou a vaga
+        /// FK da reserva que a vaga pertence
         /// </summary>
         [ForeignKey(nameof(Reserva))]
         public int ReservaFK { get; set; }

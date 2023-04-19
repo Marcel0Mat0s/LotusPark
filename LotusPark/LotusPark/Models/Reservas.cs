@@ -11,16 +11,14 @@ namespace LotusPark.Models {
         }
 
         public int Id { get; set; }
-        public DateOnly DataEntrada { get; set; }
-        public DateOnly DataSaida { get; set; }
-        public DateTime HoraEntrada { get; set; }
-        public DateTime HoraSaida { get; set; }
+        public DateTime DataEntrada { get; set; }
+        public DateTime DataSaida { get; set; }
         public string Estado { get; set; }
 
         //*********************************************
 
         /// <summary>
-        /// FK o cliente que fez a reserva
+        /// FK do cliente que fez a reserva
         /// </summary>
         [ForeignKey(nameof(Cliente))]
         public int ClienteFK { get; set; }
@@ -31,6 +29,9 @@ namespace LotusPark.Models {
         /// </summary>
         public ICollection<Vagas> ListaVagas { get; set; }
 
+        /// <summary>
+        /// Lista de funcionarios que foram designados para a reserva
+        /// </summary>
         public ICollection<Funcionarios> ListaFuncionario { get; set; }
     }
 }
