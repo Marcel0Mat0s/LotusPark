@@ -14,7 +14,7 @@
         public string Email { get; set; }
         public string CodPostal { get; set; }
         public string Morada { get; set; }
-        public DateOnly DataNascimento { get; set; }
+        public DateTime DataNascimento { get; set; }
 
         //*********************************************
 
