@@ -2,6 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace LotusPark.Data {
+
+    /// <summary>
+    /// esta classe representa a base de dados do projeto
+    /// </summary>
     public class ApplicationDbContext : IdentityDbContext {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) {
