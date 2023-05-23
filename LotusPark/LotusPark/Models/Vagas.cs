@@ -2,6 +2,13 @@
 
 namespace LotusPark.Models {
     public class Vagas {
+
+        public Vagas() {
+        
+            ListaReservas = new HashSet<Reservas>();
+        
+        }        
+
         public int Id { get; set; }
         public string Numero { get; set; }
         public string Estado { get; set; }
@@ -9,10 +16,8 @@ namespace LotusPark.Models {
         //*********************************************
 
         /// <summary>
-        /// FK da reserva que a vaga pertence
+        /// Lista de Reservas que foram feitas para esta vaga
         /// </summary>
-        [ForeignKey(nameof(Reserva))]
-        public int ReservaFK { get; set; }
-        public Reservas Reserva { get; set; }
+        public ICollection<Reservas> ListaReservas { get; set; }
     }
 }
