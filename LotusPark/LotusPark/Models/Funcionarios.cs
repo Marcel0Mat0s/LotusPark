@@ -12,13 +12,16 @@ namespace LotusPark.Models {
         }
 
         public int Id { get; set; }
-        [Required(ErrorMessage = "O {0} é de preenchimento obrigatório")]
 
+        [Required(ErrorMessage = "O {0} é de preenchimento obrigatório")]
         [DisplayName("Nome Funcionário")]
         [StringLength(50)]
         public string Nome { get; set; }
 
-        public int NIF { get; set; }
+        [Required(ErrorMessage = "O {0} é de preenchimento obrigatório")]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "O {0} deve ter exatamente {1} caracteres")]
+        [RegularExpression("[0-9]{9}", ErrorMessage = "O {0} deve ter 9 dígitos")]
+        public string NIF { get; set; }
 
         [DisplayName("Telemóvel")]
         [Required(ErrorMessage = "O {0} é de preenchimento obrigatório")]
@@ -40,6 +43,7 @@ namespace LotusPark.Models {
         [StringLength(100)]
         public string Morada { get; set; }
 
+        [StringLength(50)]
         public string Cargo { get; set; }
 
         [DisplayName("Data de Nascimento")]
