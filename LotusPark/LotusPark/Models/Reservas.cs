@@ -22,7 +22,7 @@ namespace LotusPark.Models {
         /// </summary>
         [ForeignKey(nameof(Cliente))]
         public int ClienteFK { get; set; }
-        public Clientes Cliente { get; set; }
+        public Clientes? Cliente { get; set; }
 
         /// <summary>
         /// Lista de vagas que foram reservadas

@@ -78,7 +78,7 @@ namespace LotusPark.Controllers
                 await _bd.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteFK"] = new SelectList(_bd.Clientes, "Id", "Id", reservas.ClienteFK);
+            ViewData["ClienteFK"] = new SelectList(_bd.Clientes, "Id", "Nome");
             return View(reservas);
         }
 
