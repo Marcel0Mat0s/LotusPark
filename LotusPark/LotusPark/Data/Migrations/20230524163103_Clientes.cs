@@ -9,7 +9,7 @@ namespace LotusPark.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "Clientes",
                 columns: table => new
                 {
@@ -26,9 +26,9 @@ namespace LotusPark.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Clientes", x => x.Id);
-                });
+                });*/
 
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "Funcionarios",
                 columns: table => new
                 {
@@ -46,9 +46,9 @@ namespace LotusPark.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Funcionarios", x => x.Id);
-                });
+                });*/
 
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "Vagas",
                 columns: table => new
                 {
@@ -60,9 +60,9 @@ namespace LotusPark.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vagas", x => x.Id);
-                });
+                });*/
 
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "Reservas",
                 columns: table => new
                 {
@@ -82,9 +82,9 @@ namespace LotusPark.Data.Migrations
                         principalTable: "Clientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                });*/
 
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "FuncionariosReservas",
                 columns: table => new
                 {
@@ -106,9 +106,9 @@ namespace LotusPark.Data.Migrations
                         principalTable: "Reservas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                });*/
 
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "ReservasVagas",
                 columns: table => new
                 {
@@ -130,22 +130,22 @@ namespace LotusPark.Data.Migrations
                         principalTable: "Vagas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                });*/
 
-            migrationBuilder.CreateIndex(
-                name: "IX_FuncionariosReservas_ListaReservasId",
-                table: "FuncionariosReservas",
-                column: "ListaReservasId");
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_FuncionariosReservas_ListaReservasId",
+            //    table: "FuncionariosReservas",
+            //    column: "ListaReservasId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Reservas_ClienteFK",
-                table: "Reservas",
-                column: "ClienteFK");
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_Reservas_ClienteFK",
+            //    table: "Reservas",
+            //    column: "ClienteFK");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_ReservasVagas_ListaVagasId",
-                table: "ReservasVagas",
-                column: "ListaVagasId");
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_ReservasVagas_ListaVagasId",
+            //    table: "ReservasVagas",
+            //    column: "ListaVagasId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
