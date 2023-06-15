@@ -1,0 +1,44 @@
+﻿@model LotusPark.Models.Vagas
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Vagas</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Numero" class="control-label"></label>
+                <input asp-for="Numero" class="form-control" />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstadoFK" class="control-label"></label>
+                <select asp-for="EstadoFK" class="form-control" asp-items="ViewBag.EstadoFK"></select>
+                <span asp-validation-for="EstadoFK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReservaFK" class="control-label"></label>
+                <select asp-for="ReservaFK" class="form-control" asp-items="ViewBag.ReservaFK"></select>
+                <span asp-validation-for="ReservaFK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

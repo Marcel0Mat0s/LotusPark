@@ -18,6 +18,7 @@ namespace LotusPark.Data {
         public DbSet<LotusPark.Models.Reservas> Reservas { get; set; }
         public DbSet<LotusPark.Models.Clientes> Clientes { get; set; }
         public DbSet<LotusPark.Models.Funcionarios> Funcionarios { get; set; }
+        public DbSet<LotusPark.Models.Estados>? Estados { get; set; }
 
     }
 }
