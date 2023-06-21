@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LotusPark.Models {
     public class Vagas {
+        [Key]
         public int Id { get; set; }
 
         /// <summary>
@@ -24,14 +25,14 @@ namespace LotusPark.Models {
         /// </summary>
         [ForeignKey(nameof(Estado))]
         public int EstadoFK { get; set; }
-        public Estados Estado { get; set; }
+        public Estados? Estado { get; set; }
 
         /// <summary>
         /// FK da reserva que a vaga pertence (opcional)
         /// </summary>
         [ForeignKey(nameof(Reserva))]
         public int? ReservaFK { get; set; }
-        public Reservas Reserva { get; set; }
+        public Reservas? Reserva { get; set; }
 
         //*********************************************
 

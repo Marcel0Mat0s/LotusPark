@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LotusPark.Data;
 using LotusPark.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace LotusPark.Controllers
 {
@@ -59,8 +60,9 @@ namespace LotusPark.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Numero,EstadoFK,ReservaFK")] Vagas vagas)
+        public async Task<IActionResult> Create([Bind("Numero,EstadoFK,ReservaFK")] Vagas vagas)
         {
+            IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
                 try { 
