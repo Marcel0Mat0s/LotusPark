@@ -7,23 +7,32 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LotusPark.Data;
 using LotusPark.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace LotusPark.Controllers
 {
+    [Authorize]
     public class ReservasController : Controller
     {
         private readonly ApplicationDbContext _bd;
-
-        public ReservasController(ApplicationDbContext context)
-        {
+        private readonly UserManager<IdentityUser> _userManager;
+        public ReservasController(ApplicationDbContext context, UserManager<IdentityUser> userManager) {
+            _userManager = userManager;
             _bd = context;
         }
 
         // GET: Reservas
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _bd.Reservas.Include(r => r.Cliente);
-            return View(await applicationDbContext.ToListAsync());
+            if (User.IsInRole("Cliente")) {
+                string idDaPessoaQueEstaAutenticada = _userManager.GetUserId(User);
+                var reservas = await _bd.Reservas.Include(r => r.Cliente).Where(a => a.Cliente.UserId == idDaPessoaQueEstaAutenticada).ToListAsync();
+                return View(reservas);
+            }
+            var todasReservas = await _bd.Reservas.Include(r => r.Cliente).ToListAsync();
+            return View(todasReservas);
+            
         }
 
         // GET: Reservas/Details/5

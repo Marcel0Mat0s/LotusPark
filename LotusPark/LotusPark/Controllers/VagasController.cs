@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using LotusPark.Data;
 using LotusPark.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LotusPark.Controllers
 {
+    [Authorize]
     public class VagasController : Controller
     {
         private readonly ApplicationDbContext _context;

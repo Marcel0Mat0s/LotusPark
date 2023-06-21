@@ -154,6 +154,9 @@ namespace LotusPark.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    // Adiciona o utilizador ao perfil Cliente
+                    await _userManager.AddToRoleAsync(user, "Cliente");
+
                     // Adiciona o utilizador ao perfil de cliente
                     Input.Cliente.Email = Input.Email;
                     Input.Cliente.UserId = user.Id;

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LotusPark.Data;
 using LotusPark.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LotusPark.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
         private readonly ApplicationDbContext _bd;
