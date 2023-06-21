@@ -4,7 +4,6 @@ using LotusPark.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,10 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LotusPark.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230621163338_FuncoesUtilizadores")]
-    partial class FuncoesUtilizadores
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,21 +239,21 @@ namespace LotusPark.Data.Migrations
                         new
                         {
                             Id = "a",
-                            ConcurrencyStamp = "da011df8-97b7-428b-89c1-b5d562ea7c82",
+                            ConcurrencyStamp = "1e9cef46-78dd-497b-a843-1661df296e81",
                             Name = "Administrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
                             Id = "c",
-                            ConcurrencyStamp = "c7f3edc4-aab9-4030-80dd-06b9dbc95282",
+                            ConcurrencyStamp = "a2d5f337-2f63-4058-8970-65ba8d868b3f",
                             Name = "Cliente",
                             NormalizedName = "CLIENTE"
                         },
                         new
                         {
                             Id = "f",
-                            ConcurrencyStamp = "f9167a14-3b5a-4988-a555-5cd18ed8c4f4",
+                            ConcurrencyStamp = "cb56140c-7dc2-4a83-b28c-19dda4039235",
                             Name = "Funcionario",
                             NormalizedName = "FUNCIONARIO"
                         });

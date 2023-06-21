@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LotusPark.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230621141847_VagasCorrection2")]
-    partial class VagasCorrection2
+    [Migration("20230621190440_DataBase")]
+    partial class DataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,6 +80,9 @@ namespace LotusPark.Data.Migrations
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Clientes");
@@ -112,12 +115,10 @@ namespace LotusPark.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Cargo")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("CodPostal")
-                        .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
@@ -130,7 +131,6 @@ namespace LotusPark.Data.Migrations
                         .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Morada")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -148,6 +148,9 @@ namespace LotusPark.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -172,7 +175,6 @@ namespace LotusPark.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Estado")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -190,7 +192,7 @@ namespace LotusPark.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("EstadoFK")
+                    b.Property<int>("EstadoFK")
                         .HasColumnType("int");
 
                     b.Property<string>("Numero")
@@ -234,6 +236,29 @@ namespace LotusPark.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a",
+                            ConcurrencyStamp = "1e9cef46-78dd-497b-a843-1661df296e81",
+                            Name = "Administrador",
+                            NormalizedName = "ADMINISTRADOR"
+                        },
+                        new
+                        {
+                            Id = "c",
+                            ConcurrencyStamp = "a2d5f337-2f63-4058-8970-65ba8d868b3f",
+                            Name = "Cliente",
+                            NormalizedName = "CLIENTE"
+                        },
+                        new
+                        {
+                            Id = "f",
+                            ConcurrencyStamp = "cb56140c-7dc2-4a83-b28c-19dda4039235",
+                            Name = "Funcionario",
+                            NormalizedName = "FUNCIONARIO"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -441,7 +466,9 @@ namespace LotusPark.Data.Migrations
                 {
                     b.HasOne("LotusPark.Models.Estados", "Estado")
                         .WithMany("ListaVagas")
-                        .HasForeignKey("EstadoFK");
+                        .HasForeignKey("EstadoFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("LotusPark.Models.Reservas", "Reserva")
                         .WithMany("ListaVagas")

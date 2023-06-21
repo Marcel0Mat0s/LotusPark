@@ -1,8 +1,59 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "LotusPark";
 }
+<h1>@ViewData["Title"]</h1>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Estacionamento Privado</title>
+    <style>
+        body {
+            background-image: url("https://media.istockphoto.com/id/1085153508/pt/foto/blurred-background-of-parking-lot.jpg?s=612x612&w=0&k=20&c=FRsnvnpyQoItf3UGUYHTPgiIq0nIa6jMOqK3572nm7k=");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #333;
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Bem-vindo à aplicação de Gestão de Reservas de Estacionamento Privado</p>
+    </div>
+</body>
+
+</html>

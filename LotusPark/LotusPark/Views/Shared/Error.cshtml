@@ -3,23 +3,19 @@
     ViewData["Title"] = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Erro</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Ups! Aconteceu um erro.</h1>
+        <p>Pedimos imensa desculpa pela inconveniência, mas ocorreu um erro enquanto processávamos o seu pedido.</p>
+        <p>Claro que temos todo o prazer em fornecer informações detalhadas sobre o erro, como o código hexadecimal complicado que só faz sentido para programadores com QI de gênio. Mas vamos manter isso em segredo. Afinal, quem precisa de clareza e transparência nestes tempos modernos?</p>
+        <p>Sugerimos que tente novamente mais tarde, pois é altamente provável que o erro persista indefinidamente. E, claro, se quiser testar a sua paciência ao extremo, sinta-se à vontade para contactar a nossa equipa de suporte, que ficará encantada em ignorar o seu pedido com respostas predefinidas.</p>
+    </div>
+</body>
+</html>
 
-@if (Model.ShowRequestId)
-{
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
-}
-
-<h3>Development Mode</h3>
-<p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
-</p>
-<p>
-    <strong>The Development environment shouldn't be enabled for deployed applications.</strong>
-    It can result in displaying sensitive information from exceptions to end users.
-    For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
-    and restarting the app.
-</p>

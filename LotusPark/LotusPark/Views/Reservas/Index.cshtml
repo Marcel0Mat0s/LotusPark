@@ -1,13 +1,12 @@
 ﻿@model IEnumerable<LotusPark.Models.Reservas>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista de Reservas";
 }
 
-<h1>Index</h1>
-
+<h1>Lista de Reservas</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Nova Reserva</a>
 </p>
 <table class="table">
     <thead>
@@ -21,9 +20,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Estado)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente)
-            </th>
+            @if (!User.IsInRole("Cliente")) {
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente)
+                </th>
+            }
             <th></th>
         </tr>
     </thead>
@@ -39,14 +40,25 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cliente.Nome)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            @if (!User.IsInRole("Cliente"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                </td>
+            }
+
+                @if (User.IsInRole("Cliente"))
+                {
+                    <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                }else{
+                    <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
         </tr>
 }
     </tbody>
