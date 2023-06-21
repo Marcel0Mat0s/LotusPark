@@ -4,22 +4,20 @@ using LotusPark.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace LotusPark.Data.Migrations
+namespace LotusPark.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230524163103_Clientes")]
-    partial class Clientes
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.16")
+                .HasAnnotation("ProductVersion", "6.0.18")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -65,9 +63,10 @@ namespace LotusPark.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("NIF")
+                    b.Property<string>("NIF")
+                        .IsRequired()
                         .HasMaxLength(9)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(9)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -84,6 +83,24 @@ namespace LotusPark.Data.Migrations
                     b.ToTable("Clientes");
                 });
 
+            modelBuilder.Entity("LotusPark.Models.Estados", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Estados");
+                });
+
             modelBuilder.Entity("LotusPark.Models.Funcionarios", b =>
                 {
                     b.Property<int>("Id")
@@ -94,33 +111,41 @@ namespace LotusPark.Data.Migrations
 
                     b.Property<string>("Cargo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("CodPostal")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Morada")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("NIF")
-                        .HasColumnType("int");
+                    b.Property<string>("NIF")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
 
                     b.HasKey("Id");
 
@@ -163,15 +188,21 @@ namespace LotusPark.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("EstadoFK")
+                        .HasColumnType("int");
 
                     b.Property<string>("Numero")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ReservaFK")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("EstadoFK");
+
+                    b.HasIndex("ReservaFK");
 
                     b.ToTable("Vagas");
                 });
@@ -378,21 +409,6 @@ namespace LotusPark.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ReservasVagas", b =>
-                {
-                    b.Property<int>("ListaReservasId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ListaVagasId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ListaReservasId", "ListaVagasId");
-
-                    b.HasIndex("ListaVagasId");
-
-                    b.ToTable("ReservasVagas");
-                });
-
             modelBuilder.Entity("FuncionariosReservas", b =>
                 {
                     b.HasOne("LotusPark.Models.Funcionarios", null)
@@ -417,6 +433,27 @@ namespace LotusPark.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("LotusPark.Models.Vagas", b =>
+                {
+
+                    b.HasOne("LotusPark.Models.Estados", "Estado")
+                        .WithMany("ListaVagas")
+                        .HasForeignKey("EstadoFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Estado");
+
+                    b.HasOne("LotusPark.Models.Reservas", "Reserva")
+                        .WithMany("ListaVagas")
+                        .HasForeignKey("ReservaFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+
+                    b.Navigation("Reserva");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -470,24 +507,20 @@ namespace LotusPark.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ReservasVagas", b =>
-                {
-                    b.HasOne("LotusPark.Models.Reservas", null)
-                        .WithMany()
-                        .HasForeignKey("ListaReservasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LotusPark.Models.Vagas", null)
-                        .WithMany()
-                        .HasForeignKey("ListaVagasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("LotusPark.Models.Clientes", b =>
                 {
                     b.Navigation("ListaReservas");
+                });
+
+            modelBuilder.Entity("LotusPark.Models.Estados", b =>
+                {
+                    b.Navigation("ListaVagas");
+                });
+
+
+            modelBuilder.Entity("LotusPark.Models.Reservas", b =>
+                {
+                    b.Navigation("ListaVagas");
                 });
 #pragma warning restore 612, 618
         }
