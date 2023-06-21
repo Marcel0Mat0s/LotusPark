@@ -52,6 +52,11 @@ namespace LotusPark.Models {
         //*********************************************
 
         /// <summary>
+        /// Atributo para ligar aos dados de autenticação de um utilizador
+        /// </summary>
+        public string UserId { get; set; }
+
+        /// <summary>
         /// Lista de reservas a que o funcionario foi designado
         /// </summary>
         public ICollection<Reservas> ListaReservas { get; set; }
