@@ -9,7 +9,7 @@
         string nome = utilizador.UserName;
         var rolesUser = await UserManager.GetRolesAsync(utilizador);
     <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+            <a class="nav-link text-dark">
                 Bem vindo(a) @nome!
                 @foreach (string perfil in rolesUser ?? Enumerable.Empty<string>()) {
                     <text> -<i>@perfil</i> </text>
