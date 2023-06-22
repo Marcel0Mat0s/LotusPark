@@ -47,17 +47,17 @@
                 </td>
             }
 
-                @if (User.IsInRole("Cliente"))
-                {
-                    <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    </td>
-                }else{
-                    <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
+            @if (User.IsInRole("Cliente"))
+            {
+                <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                </td>
+            }else{
+                <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
+                </td>
                 }
         </tr>
 }

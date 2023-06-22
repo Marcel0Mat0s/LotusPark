@@ -1,10 +1,10 @@
 ﻿@model LotusPark.Models.Reservas
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
 <h4>Reservas</h4>
 <hr />
@@ -33,15 +33,17 @@
                 <select asp-for="ClienteFK" class="form-control" asp-items="ViewBag.ClienteFK"></select>
                 <span asp-validation-for="ClienteFK" class="text-danger"></span>
             </div>
+            </br>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
+            </br>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar à Lista</a>
 </div>
 
 @section Scripts {
