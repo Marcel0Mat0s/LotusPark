@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LotusPark.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230622115719_test")]
-    partial class test
+    [Migration("20230622145911_DatabaseCorrection")]
+    partial class DatabaseCorrection
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -241,21 +241,21 @@ namespace LotusPark.Data.Migrations
                         new
                         {
                             Id = "a",
-                            ConcurrencyStamp = "1056f2eb-314b-4d30-975b-f7e941751d94",
+                            ConcurrencyStamp = "68c1cda9-d0f1-4a58-a2b5-4bc39c6fc816",
                             Name = "Administrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
                             Id = "c",
-                            ConcurrencyStamp = "cf1d4795-caa7-4284-86b3-f106daee43e7",
+                            ConcurrencyStamp = "82147345-a609-4cb4-96fb-93168d85f40c",
                             Name = "Cliente",
                             NormalizedName = "CLIENTE"
                         },
                         new
                         {
                             Id = "f",
-                            ConcurrencyStamp = "5b6b6297-2cf1-4c29-82e0-d95a1700b672",
+                            ConcurrencyStamp = "8badaf35-213f-409d-b0e8-38d1ba3f06f8",
                             Name = "Funcionario",
                             NormalizedName = "FUNCIONARIO"
                         });
